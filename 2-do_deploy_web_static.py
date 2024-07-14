@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-# Fabric script that generates a .tgz archive from the
-# contents of the web_static folder of your AirBnB Clone repo
+# Fabric script  generating a .tgz archive from the
+# contents of the web_static folder of AirBnB Clone repo
 # using the function do_pack
 import os
 from fabric.api import run, put, env
 
-env.hosts = ['34.204.60.80', '54.160.72.183']
+env.hosts = ['54.237.21.22', '54.172.183.7']
 env.user = "ubuntu"
 
 
 def do_deploy(archive_path):
-    """Create a tar gzipped archive of the directory web_static."""
+    """Creating the tar gzipped archive of directory web_static."""
     if os.path.exists(archive_path) is False:
         return False
     else:

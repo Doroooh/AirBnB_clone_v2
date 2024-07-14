@@ -8,11 +8,11 @@ from fabric.api import env, local, put, run
 from datetime import datetime
 from os.path import exists, isdir
 
-env.hosts = ['34.204.60.80', '54.160.72.183']
+env.hosts = ['54.237.21.22', '54.172.183.7']
 
 
 def do_pack():
-    """generates a tgz archive"""
+    """generating the tgz archive"""
     try:
         date = datetime.now().strftime("%Y%m%d%H%M%S")
         if not isdir("versions"):
@@ -26,7 +26,7 @@ def do_pack():
 
 
 def do_deploy(archive_path):
-    """distributes an archive to the web servers"""
+    """distributing the archive to the web servers"""
     if not exists(archive_path):
         return False
     try:
@@ -44,7 +44,7 @@ def do_deploy(archive_path):
 
 
 def deploy():
-    """creates and distributes an archive to the web servers"""
+    """creating and distributing the archive to the web servers"""
     archive_path = do_pack()
     if archive_path is None:
         return False
