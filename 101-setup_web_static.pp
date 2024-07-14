@@ -1,4 +1,4 @@
-# puppet manifest preparing a server for static content deployment
+# puppet manifest prepare server for static content deployment
 exec { 'sudo apt-get-update':
   command => '/usr/bin/env apt-get -y update',
 }
