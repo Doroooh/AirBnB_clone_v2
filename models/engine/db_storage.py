@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module to create a mysql engine"""
+"""create a mysql engine"""
 
 import os
 from models.base_model import BaseModel, Base
@@ -15,8 +15,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 class DBStorage:
-    """This class creates the engine for a mysql database
-    storage system"""
+    """creating an engine for a mysql database storage system"""
 
     all_classes = {"BaseModel": BaseModel, "User": User, "State": State,
                    "City": City, "Amenity": Amenity, "Place": Place,
@@ -48,30 +47,3 @@ class DBStorage:
             value = obj
             obj_dict[key] = value
         return obj_dict
-
-    def new(self, obj):
-        """Add object to current database session"""
-        self.__session.add(obj)
-        self.__session.flush()
-
-    def save(self):
-        """Commit changes to the current databases session"""
-        self.__session.commit()
-
-    def delete(self, obj=None):
-        """Delete object from the current database session"""
-        if obj is not None:
-            self.__session.delete(obj)
-
-    def reload(self):
-        """Create tables and current database session"""
-        Base.metadata.create_all(self.__engine)
-
-        session_factory = sessionmaker(bind=self.__engine,
-                                       expire_on_commit=False)
-        Session = scoped_session(session_factory)
-        self.__session = Session()
-
-    def close(self):
-        """ call close on private session. """
-        self.__session.close()
