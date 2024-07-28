@@ -1,27 +1,22 @@
 #!/usr/bin/python3
-""" the Script that starts the Flask web app with a three  view function """
-
+"""A Simple Flask web application"""
 from flask import Flask
+app = Flask('web_flask')
 
-app = Flask(__name__)
-app.url_map.strict_slashes = False
-
-@app.route('/')
-def hello_world():
-    """ To return the text """
+@app.route('/', strict_slashes=False)
+def hello_route1():
+    """to display the phrase 'Hello HBNB!'"""
     return 'Hello HBNB!'
 
-@app.route('/hbnb')
-def hello():
-    """ to return other text """
+@app.route('/hbnb', strict_slashes=False)
+def hello_route2():
+    """to display the phrase'HBNB'"""
     return 'HBNB'
 
-@app.route('/c/<text>')
-def c_text(text):
-    """ to replace text with the variable"""
-    text = text.replace('_', ' ')
-    return 'C {}'.format(text)
+@app.route('/c/<text>', strict_slashes=False)
+def hello_route3(text):
+    """Return 'C ' and the html request text to follow and includes a space"""
+    return 'C {}'.format(text.replace('_', ' '))
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
