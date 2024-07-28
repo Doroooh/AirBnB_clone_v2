@@ -1,39 +1,31 @@
 #!/usr/bin/python3
-"""  Adding a third view function to redirect, with the default val for variable """
-
+""" A Simple Flask web app"""
 from flask import Flask
-
-
-app = Flask(__name__)
+app = Flask('web_flask')
 app.url_map.strict_slashes = False
 
-
 @app.route('/')
-def hello_world():
-    """ Return text """
+def hello_route1():
+    """ To display the phrase 'Hello HBNB!'"""
     return 'Hello HBNB!'
 
-
 @app.route('/hbnb')
-def hello():
-    """ Return  text """
+def hello_route2():
+    """displays 'HBNB'"""
     return 'HBNB'
 
 
 @app.route('/c/<text>')
-def c_text(text):
-    """ to replace text with  a variable. """
-    text = text.replace('_', ' ')
-    return 'C {}'.format(text)
+def hello_route3(text):
+    """Return 'C ' and is then followed by a html request text"""
+    return 'C {}'.format(text.replace('_', ' '))
 
-
-@app.route('/python/')
 @app.route('/python/<text>')
-def python_text(text='is cool'):
-    """ to replace text with another variable. """
-    text = text.replace('_', ' ')
-    return 'Python {}'.format(text)
+@app.route('/python/', defaults={'text': 'is cool'})
+def hello_route4(text):
+    """Displays 'Python is cool'"""
+    return 'Python {}'.format(text.replace('_', ' '))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
