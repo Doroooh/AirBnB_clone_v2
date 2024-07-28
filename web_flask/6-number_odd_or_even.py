@@ -25,21 +25,21 @@ def hello_route4(text):
     """Return 'Python is cool'"""
     return 'Python {}'.format(text.replace('_', ' '))
 
-@app.route('/number/<int:n>')
-def hello_route5(n):
+@app.route('/number/<int:k>')
+def hello_route5(k):
     """format as a number if can convert to an int"""
-    return '{:d} is a number'.format(n)
+    return '{:d} is a number'.format(k)
 
 @app.route('/number_template/<int:n>')
-def hello_route6(n):
-    """Return html template with the number `n`"""
-    return render_template('5-number.html', n=n)
+def hello_route6(k):
+    """Return html template with the number `k`"""
+    return render_template('5-number.html', k=k)
 
-@app.route('/number_odd_or_even/<int:n>')
-def hello_route7(n):
+@app.route('/number_odd_or_even/<int:k>')
+def hello_route7(k):
     """Return rendered html containing logic that determines whether
-    `n` is even or odd and displays the result in an <h1> tag"""
-    return render_template('6-number_odd_or_even.html', n=n)
+    `k` is even or odd and displays the result in an <h1> tag"""
+    return render_template('6-number_odd_or_even.html', k=k)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
